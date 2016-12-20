@@ -1,6 +1,6 @@
 Package: com.ps.bigmoji
 Name: Bigmoji
-Depends: mobilesubstrate
+Depends: mobilesubstrate, firmware (<< 10.0)
 Version: 1.0.0
 Architecture: iphoneos-arm
 Description: Bigger emoji for iMessages
