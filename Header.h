@@ -6,6 +6,14 @@
 - (UIFont *)balloonTextFont;
 @end
 
+@interface CKLazyTextView : UIView
+@property(retain, nonatomic) UIFont *font;
+@property(retain, nonatomic) NSAttributedString *attributedText;
+@end
+
+@interface CKTiledTextView : CKLazyTextView
+@end
+
 @interface CKBalloonImageView : UIView
 @property(retain, nonatomic) UIImage *image;
 @end
@@ -20,6 +28,11 @@
 @end
 
 @interface CKTextBalloonView : CKColoredBalloonView
+@property(retain, nonatomic) NSAttributedString *attributedText;
+@end
+
+@interface _CKTextBalloonView : CKColoredBalloonView
+@property(retain, nonatomic) CKTiledTextView *textView;
 @property(retain, nonatomic) NSAttributedString *attributedText;
 @end
 
@@ -43,6 +56,10 @@
 - (NSAttributedString *)subject;
 @end
 
+@interface CKTextMessagePart : NSObject
+- (NSAttributedString *)text;
+@end
+
 @interface CKMessageEntryView : UIView
 @property BOOL shouldShowSubject;
 @end
@@ -57,23 +74,40 @@
 @interface CKMessageEntryRichTextView : CKMessageEntryTextView
 @end
 
+@interface CKTextContentView : UITextView
+@end
+
+@interface CKContentEntryView : UIScrollView {
+    NSString *_defaultText;
+}
+@property BOOL showsSubject;
+@end
+
 @interface CKUIBehavior (Addition)
 - (UIEdgeInsets)bigEmojiAlignmentRectInsets;
 - (UIFont *)bigEmojiFont;
 @end
 
 @interface CKColoredBalloonView (Addition)
-- (_Bool)hasBackground;
+- (BOOL)hasBackground;
 @end
 
 @interface CKTextBalloonView (Addition)
-- (_Bool)modifiesSingleLineBalloonLayout;
+- (BOOL)modifiesSingleLineBalloonLayout;
 @end
 
 @interface CKTextMessagePartChatItem (Addition)
-- (_Bool)shouldUseBigEmoji;
+- (BOOL)shouldUseBigEmoji;
+@end
+
+@interface CKTextMessagePart (Addition)
+- (BOOL)shouldUseBigEmoji;
 @end
 
 @interface CKMessageEntryTextView (Addition)
+- (void)updateFontIfNeeded;
+@end
+
+@interface CKTextContentView (Addition)
 - (void)updateFontIfNeeded;
 @end
